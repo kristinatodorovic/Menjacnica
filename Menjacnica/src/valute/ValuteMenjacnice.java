@@ -10,7 +10,8 @@ public class ValuteMenjacnice {
 	}
 
 	public void setValute(LinkedList<Valuta> valute) {
-		this.valute = valute;
+		if(valute==null) throw new RuntimeException("Greska!");
+		else this.valute = valute;
 	}
 
 	@Override

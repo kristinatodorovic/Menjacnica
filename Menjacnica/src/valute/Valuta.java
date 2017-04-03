@@ -13,13 +13,15 @@ public class Valuta {
 		return nazivValute;
 	}
 	public void setNazivValute(String nazivValute) {
-		this.nazivValute = nazivValute;
+		if(nazivValute==null || nazivValute.equals("")) throw new RuntimeException("Naziv valute ne moze biti null ili prazan string.");
+		else this.nazivValute = nazivValute;
 	}
 	public String getSkrNaziv() {
 		return skrNaziv;
 	}
 	public void setSkrNaziv(String skrNaziv) {
-		this.skrNaziv = skrNaziv;
+		if(skrNaziv.length()>3 || skrNaziv==null) throw new RuntimeException("Skr. valute ne moze biti null ili duza od tri slova");
+		else this.skrNaziv = skrNaziv;
 	}
 	public LinkedList<Kurs> getKursevi() {
 		return kursevi;

@@ -13,25 +13,29 @@ public class Kurs {
 		return datum;
 	}
 	public void setDatum(GregorianCalendar datum) {
-		this.datum = datum;
+	if(datum!=null) this.datum = datum;
+	else throw new RuntimeException("Datum ne moze biti null!");
 	}
 	public int getProdajni() {
 		return prodajni;
 	}
 	public void setProdajni(int prodajni) {
-		this.prodajni = prodajni;
+		if(prodajni>0) this.prodajni = prodajni;
+		else throw new RuntimeException("Pogresna vrednost!");
 	}
 	public int getSrednji() {
 		return srednji;
 	}
 	public void setSrednji(int srednji) {
-		this.srednji = srednji;
+		if(srednji>0) this.srednji = srednji;
+		else throw new RuntimeException("Pogresna vrednost!");
 	}
 	public int getKupovni() {
 		return kupovni;
 	}
 	public void setKupovni(int kupovni) {
-		this.kupovni = kupovni;
+		if(kupovni>0) this.kupovni = kupovni;
+		else throw new RuntimeException("Pogresna vrednost!");
 	}
 	@Override
 	public String toString() {
