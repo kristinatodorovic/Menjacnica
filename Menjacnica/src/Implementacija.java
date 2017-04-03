@@ -65,9 +65,10 @@ public class Implementacija implements Interfejs {
 					}
 			}
 
-		return k;
+		}
+		
 
-}
+		return k;
 	
 }
 	
