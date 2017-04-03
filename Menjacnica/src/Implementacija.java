@@ -1,58 +1,74 @@
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 
 import interfejsi.Interfejs;
 import kursevi.Kurs;
+
+import valute.Valuta;
+
 import valute.ValuteMenjacnice;
 
 public class Implementacija implements Interfejs {
+
+
 	ValuteMenjacnice menjacnica=new ValuteMenjacnice();
+	
+
 	@Override
 	public void dodajKurs(GregorianCalendar datum, int prodajni, int srednji, int kupovni, String valuta) {
-		Kurs ks=new Kurs();
-		ks.setDatum(datum);
-		ks.setKupovni(kupovni);
-		ks.setProdajni(prodajni);
-		ks.setSrednji(srednji);
+
 		for(int i=0;i<menjacnica.getValute().size();i++){
 			if(menjacnica.getValute().get(i).getNazivValute().equals(valuta)){
-				menjacnica.getValute().get(i).getKursevi().add(ks);
+				Kurs k=new Kurs();
+				k.setDatum(datum);
+				k.setKupovni(kupovni);
+				k.setProdajni(prodajni);
+				k.setSrednji(srednji);
+				menjacnica.getValute().get(i).getKursevi().add(k);
 				return;
 			}
 		}
+		
 
 	}
 
 	@Override
 	public void obrisiKurs(GregorianCalendar datum, String valuta) {
-		
+
 		for(int i=0;i<menjacnica.getValute().size();i++){
 			if(menjacnica.getValute().get(i).getNazivValute().equals(valuta)){
-				for(int z=0;z<menjacnica.getValute().get(i).getKursevi().size();z++){
-					if(menjacnica.getValute().get(i).getKursevi().get(z).getDatum().equals(datum) && datum!=null){
-						menjacnica.getValute().get(i).getKursevi().remove(z);
+				for(int j=0;j<menjacnica.getValute().get(i).getKursevi().size();j++){
+					if(menjacnica.getValute().get(i).getKursevi().get(j).getDatum().equals(datum)) {
+						menjacnica.getValute().get(i).getKursevi().remove(j);
+						return;
 					}
-				}
+						
 				}
 			}
+		}
+
 	}
 
 	@Override
 	public Kurs pronadjiKurs(GregorianCalendar datum, String valuta) {
-		Kurs ks=new Kurs();
-		ks.setDatum(datum);
+
+	Kurs k=new Kurs();
 		for(int i=0;i<menjacnica.getValute().size();i++){
 			if(menjacnica.getValute().get(i).getNazivValute().equals(valuta)){
-				for(int z=0;z<menjacnica.getValute().get(i).getKursevi().size();z++){
-					if(menjacnica.getValute().get(i).getKursevi().get(z).getDatum().equals(datum) && datum!=null){
-						ks.setKupovni(menjacnica.getValute().get(i).getKursevi().get(z).getKupovni());
-						ks.setKupovni(menjacnica.getValute().get(i).getKursevi().get(z).getSrednji());
-						ks.setKupovni(menjacnica.getValute().get(i).getKursevi().get(z).getProdajni());
-						
+				for(int j=0;j<menjacnica.getValute().get(i).getKursevi().size();j++){
+					if(menjacnica.getValute().get(i).getKursevi().get(j).getDatum().equals(datum)){
+						k.setDatum(datum);
+						k.setKupovni(menjacnica.getValute().get(i).getKursevi().get(j).getKupovni());
+						k.setProdajni(menjacnica.getValute().get(i).getKursevi().get(j).getProdajni());
+						k.setSrednji(menjacnica.getValute().get(i).getKursevi().get(j).getSrednji());
+							}
 					}
-				}
 			}
-		}
-		return ks;
-	}
+
+		return k;
+
+}
+	
+}
 	
 }
